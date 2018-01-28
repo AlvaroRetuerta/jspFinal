@@ -7,6 +7,8 @@ import es.altair.util.SessionProvider;
 
 public class UsuarioDAOImplHibernate implements UsuarioDAO {
 
+	private String pass = "Altair123$%";
+	
 	public boolean validarEmail(Usuario usu) {
 		boolean correcto = true;
 
@@ -36,9 +38,9 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 			sesion.beginTransaction();
 
 			filas = sesion
-					.createSQLQuery("INSERT INTO usuarios (nombre, apellidos, username, password, email, tipo)"
-							+ "values (:n, :a, :u, :p, :e, :t)")
-					.setParameter("u", usu.getUsername()).setParameter("p", usu.getPassword()).setParameter("a", usu.getApellidos())
+					.createSQLQuery("INSERT INTO users (nombre, apellidos, username, password, email, tipo)"
+							+ "values (:n, :a, :u, AES_ENCRYPT(:p, :passphrase), :e, :t)")
+					.setParameter("u", usu.getUsername()).setParameter("p", usu.getPassword()).setParameter("passphrase", pass).setParameter("a", usu.getApellidos())
 					.setParameter("n", usu.getNombre()).setParameter("e", usu.getEmail()).setParameter("t", usu.getTipo()).executeUpdate();
 
 			sesion.getTransaction().commit();
@@ -57,15 +59,14 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 		Session sesion = SessionProvider.getSession();
 		try {
 			sesion.beginTransaction();
-
 			usu = (Usuario) sesion
-					.createQuery(
-							"SELECT u FROM Usuario u WHERE login=:l " + "AND password=:p")
-					.setParameter("l", login).setParameter("p", password).uniqueResult();
-
+					.createSQLQuery(
+							"SELECT * FROM users WHERE username=:l AND password=AES_ENCRYPT(:p, :passphrase)")
+					.setParameter("l", login).setParameter("p", password).setParameter("passphrase", pass)
+					.uniqueResult();
 			sesion.getTransaction().commit();
 		} catch (Exception e) {
-			
+				
 		} finally {
 			sesion.close();
 			

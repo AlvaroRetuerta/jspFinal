@@ -1,9 +1,4 @@
-<%@page import="es.altair.bean.Vehiculo"%>
-<%@page import="es.altair.dao.VehiculoDAOImplHibernate"%>
-<%@page import="es.altair.dao.VehiculoDAO"%>
-<%@page import="java.util.List"%>
-<%@page import="es.altair.bean.Usuario"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@page import="es.altair.bean.Vehiculo"%><%@page import="es.altair.dao.VehiculoDAOImplHibernate"%><%@page import="es.altair.dao.VehiculoDAO"%><%@page import="java.util.List"%><%@page import="es.altair.bean.Usuario"%><%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -44,10 +39,10 @@
 					<a href="anadirVehiculo.jsp" class="btn btn-primary btn-xs pull-right"><b>+</b>
 						Añadir Vehiculo</a>
 					<tr>
-						<th>Título</th>
-						<th>Autor</th>
-						<th>ISBN</th>
-						<th>Portada</th>
+						<th>Marca</th>
+						<th>Modelo</th>
+						<th>Año</th>
+						<th>Imagen</th>
 						<th></th>
 					</tr>
 				</thead>

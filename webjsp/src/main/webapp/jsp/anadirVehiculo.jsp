@@ -1,6 +1,3 @@
-<%@page import="es.altair.bean.Libro"%>
-<%@page import="es.altair.dao.LibroDAOImplHibernate"%>
-<%@page import="es.altair.dao.LibroDAO"%>
 <%@page import="es.altair.bean.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -41,25 +38,33 @@
 		<div class="row">
 			<div class="col-md-5 col-md-offset-3">
 				<div class="form-area">
-					<form action="../AnadirLibro" method="post" role="form"
+					<form action="../AnadirVehiculo" method="post" role="form"
 						enctype="multipart/form-data">
-						<h3>Editar Libro</h3>
+						<h3>Editar Vehiculo</h3>
 						<div class="form-group">
-							<label for="titulo">Título</label> <input type="text"
-								name="titulo" id="titulo" class="form-control">
+							<label for="marca">Marca</label> <input type="text"
+								name="marca" id="marca" class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="autor">Autor</label> <input type="text" name="autor"
-								id="autor" class="form-control">
+							<label for="modelo">Modelo</label> <input type="text" name="modelo"
+								id="modelo" class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="isbn">ISBN</label> <input type="number" name="isbn"
-								id="isbn" class="form-control">
+							<label for="matricula">Matricula</label> <input type="text" name="matricula"
+								id="matricula" class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="portada">Portada</label> 
+							<label for="pais">Pais</label> <input type="text" name="pais"
+								id="pais" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="anyo">Año</label> <input type="number" name="anyo"
+								id="anyo" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="imagen">Imagen</label> 
 							<input type="file"
-								class="form-control" id="portada" name="portada">
+								class="form-control" id="imagen" name="imagen">
 						</div>
 						<div class="form-group">
 							<input type="submit" class="form-control btn btn-primary">

@@ -12,8 +12,8 @@
         <property name="hibernate.show_sql">true</property>
         
         
-        <mapping class="es.altair.vehiculo"/>
-        <mapping class="es.altair.usuario"/>
-        <mapping class="es.altair.alquiler"/>
+        <mapping class="es.altair.bean.Vehiculo"/>
+        <mapping class="es.altair.bean.Usuario"/>
+        <mapping class="es.altair.bean.Alquiler"/>
     </session-factory>
 </hibernate-configuration>

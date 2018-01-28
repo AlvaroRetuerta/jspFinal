@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,7 +30,7 @@ public class Vehiculo implements Serializable{
 	private String pais;
 	private byte[] imagen;
 	
-	@OneToMany
+	@OneToMany(mappedBy="vehiculo")
 	Set<Alquiler> alquileres= new HashSet<Alquiler>();
 	
 	public Vehiculo(String matricula, String marca, String modelo, int año, String pais) {

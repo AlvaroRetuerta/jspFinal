@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="user")
+@Table(name="users")
 public class Usuario implements Serializable{
 
 	@Id
@@ -27,8 +27,8 @@ public class Usuario implements Serializable{
 	private int tipo;
 	private byte[] imagen;
 	
-	@OneToMany(mappedBy="Usuario")//campo de la otra clase que marca el mapeo
-	private Set<Vehiculo> vehiculos = new HashSet<Vehiculo>();
+	@OneToMany(mappedBy="usuario")//campo de la otra clase que marca el mapeo
+	private Set<Alquiler> alquileres = new HashSet<Alquiler>();
 
 	public int getIdUser() {
 		return idUser;
@@ -94,13 +94,7 @@ public class Usuario implements Serializable{
 		this.imagen = imagen;
 	}
 
-	public Set<Vehiculo> getVehiculos() {
-		return vehiculos;
-	}
-
-	public void setVehiculos(Set<Vehiculo> vehiculos) {
-		this.vehiculos = vehiculos;
-	}
+	
 
 	public Usuario(String nombre, String apellidos, String username, String password, String email, int tipo) {
 		super();

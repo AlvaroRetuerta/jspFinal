@@ -1,4 +1,4 @@
-<%@page import="es.altair.dao.VehiculoDAOImplHibernate"%><%@page import="es.altair.dao.VehiculoDAO"%><%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%><%
+<%@page import="java.io.OutputStream"%><%@page import="es.altair.dao.VehiculoDAOImplHibernate"%><%@page import="es.altair.dao.VehiculoDAO"%><%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%><%
 try {
 	String idVehiculo = request.getParameter("imag");
 	VehiculoDAO vDAO = new VehiculoDAOImplHibernate();

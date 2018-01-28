@@ -1,6 +1,6 @@
-<%@page import="es.altair.bean.Libro"%>
-<%@page import="es.altair.dao.LibroDAOImplHibernate"%>
-<%@page import="es.altair.dao.LibroDAO"%>
+<%@page import="es.altair.bean.Vehiculo"%>
+<%@page import="es.altair.dao.VehiculoDAOImplHibernate"%>
+<%@page import="es.altair.dao.VehiculoDAO"%>
 <%@page import="es.altair.bean.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -22,8 +22,8 @@
 			if (session.getAttribute("usuLogeado") == null || session.isNew()) {
 				response.sendRedirect("../index.jsp?mensaje=Inicie sesión");
 			} else {
-				LibroDAO lDAO = new LibroDAOImplHibernate();
-				Libro l = lDAO.obtenerLibroPorUUID(request.getParameter("uuid"));
+				VehiculoDAO vDAO = new VehiculoDAOImplHibernate();
+				Vehiculo v = vDAO.obtener(request.getParameter("matricula"));
 		%>
 
 		<div class="row">
@@ -42,27 +42,35 @@
 		<div class="row">
 			<div class="col-md-5 col-md-offset-3">
 				<div class="form-area">
-					<form action="../EditarLibro" method="post" role="form"
+					<form action="../EditarVehiculo" method="post" role="form"
 						enctype="multipart/form-data">
-						<h3>Editar Libro</h3>
-						<input type="hidden" name="uuid" id="uuid" value="<%=l.getUuid()%>">
+						<h3>Editar Vehiculo</h3>
+						<input type="hidden" name="uuid" id="uuid" value="<%=v.getId()%>">
 						<div class="form-group">
-							<label for="titulo">Título</label> <input type="text"
-								name="titulo" id="titulo" class="form-control"
-								value="<%=l.getTitulo()%>">
+							<label for="marca">Marca</label> <input type="text"
+								name="marca" id="marca" class="form-control"
+								value="<%=v.getMarca()%>">
 						</div>
 						<div class="form-group">
-							<label for="autor">Autor</label> <input type="text" name="autor"
-								id="autor" class="form-control" value="<%=l.getAutor()%>">
+							<label for="modelo">Modelo</label> <input type="text" name="modelo"
+								id="modelo" class="form-control" value="<%=v.getModelo()%>">
 						</div>
 						<div class="form-group">
-							<label for="isbn">ISBN</label> <input type="number" name="isbn"
-								id="isbn" class="form-control" value="<%=l.getIsbn()%>">
+							<label for="matricula">Matricula</label> <input type="text" name="matricula"
+								id="matricula" class="form-control" value="<%=v.getMatricula()%>">
 						</div>
 						<div class="form-group">
-							<img alt="Portada" src="image.jsp?imag=<%=l.getIdLibro() %>" class="img-thumbnail"
+							<label for="pais">Pais</label> <input type="text" name="pais"
+								id="pais" class="form-control" value="<%=v.getModelo()%>">
+						</div>
+						<div class="form-group">
+							<label for="anyo">Año</label> <input type="number" name="anyo"
+								id="anyo" class="form-control" value="<%=v.getAño()%>">
+						</div>
+						<div class="form-group">
+							<img alt="imagen" src="image.jsp?imag=<%=v.getId() %>" class="img-thumbnail"
 								width="50" height="50"> <input type="file"
-								class="form-control" id="portada" name="portada">
+								class="form-control" id="imagen" name="imagen">
 						</div>
 						<div class="form-group">
 							<input type="submit" class="form-control btn btn-primary">
