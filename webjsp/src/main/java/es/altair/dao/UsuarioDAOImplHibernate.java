@@ -60,9 +60,9 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 		try {
 			sesion.beginTransaction();
 			usu = (Usuario) sesion
-					.createSQLQuery(
-							"SELECT * FROM users WHERE username=:l AND password=AES_ENCRYPT(:p, :passphrase)")
-					.setParameter("l", login).setParameter("p", password).setParameter("passphrase", pass)
+					.createQuery(
+							"SELECT u FROM Usuario u WHERE username=:u " + "AND password=AES_ENCRYPT(:p, :passphrase)")
+					.setParameter("u", login).setParameter("p", password).setParameter("passphrase", pass)
 					.uniqueResult();
 			sesion.getTransaction().commit();
 		} catch (Exception e) {

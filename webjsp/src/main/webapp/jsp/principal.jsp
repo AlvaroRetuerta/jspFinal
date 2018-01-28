@@ -58,15 +58,15 @@
 						width="50" height="50"></td>
 					<td>
 						<button type="button" class="btn btn-default"
-							onclick="location.href='editarLibro.jsp?uuid=<%=v.getId()%>'">
+							onclick="location.href='editarVehiculo.jsp?uuid=<%=v.getId()%>'">
 							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 							Actualizar
 						</button> <!-- Button trigger modal -->
 						<button type="button" class="btn btn-warning" data-toggle="modal"
-							data-target="#borrarLibro<%=v.getId()%>">
+							data-target="#borrar<%=v.getId()%>">
 							<i class="fa fa-times" aria-hidden="true"></i> Borrar
 						</button> <!-- Modal -->
-						<div class="modal fade" id="borrarLibro<%=v.getId()%>"
+						<div class="modal fade" id="borrar<%=v.getId()%>"
 							tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 							aria-hidden="true">
 							<div class="modal-dialog" role="document">
