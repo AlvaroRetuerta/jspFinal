@@ -87,8 +87,8 @@ public class VehiculoDAOImplHibernate implements VehiculoDAO {
 			sesion.beginTransaction();
 
 			lista =  sesion
-					.createQuery(
-							"SELECT * FROM vehiculos join alquileres on(vehiculos.idVehiculo=alquileres.idVehiculo where alquileres.idUser=:id")
+					.createSQLQuery(
+							"SELECT v FROM vehiculos v join alquileres on(vehiculos.idVehiculo=alquileres.idVehiculo where alquileres.idUser=:id")
 					.setParameter("id", u.getIdUser()).list();
 
 			sesion.getTransaction().commit();
@@ -122,6 +122,26 @@ public class VehiculoDAOImplHibernate implements VehiculoDAO {
 
 		return imagen;
 
+	}
+
+	public List<Vehiculo> listarTodos() {
+		
+		List<Vehiculo> lista = new ArrayList<Vehiculo>();
+		Session sesion = SessionProvider.getSession();
+		try {
+			sesion.beginTransaction();
+
+			lista = sesion.createQuery("FROM Vehiculo v ").list();
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+			// sf.close();
+		}
+		
+		return lista;
 	}
 	
 	

@@ -17,5 +17,6 @@ public interface VehiculoDAO {
 	
 	public byte[] obtenerImagenPorId(int id);
 
+	public List<Vehiculo> listarTodos();
 	
 }

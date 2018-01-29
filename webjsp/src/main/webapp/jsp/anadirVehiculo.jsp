@@ -27,7 +27,7 @@
 				<li class="breadcrumb-item"><a href="../index.jsp">Bienvenido
 						<%=((Usuario) session.getAttribute("usuLogeado")).getNombre()%>
 				</a></li>
-				<li class="breadcrumb-item"><a href="principalUsu.jsp">Pincipal
+				<li class="breadcrumb-item"><a href="principalUsuario.jsp">Pincipal
 						Usuario</a></li>
 				<li class="breadcrumb-item">Añadir Vehiculo</li>
 				<li class="breadcrumb-item active"><a href="../CerrarSesion">Cerrar

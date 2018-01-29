@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Libros del Usuario</title>
+<title>Principal</title>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 
@@ -19,7 +19,7 @@
 				response.sendRedirect("../index.jsp?mensaje=Inicie sesión");
 			} else {
 				VehiculoDAO vDAO = new VehiculoDAOImplHibernate();
-				List<Vehiculo> vehiculos =vDAO.listar((Usuario) session.getAttribute("usuLogeado"));
+				List<Vehiculo> vehiculos =vDAO.listarTodos();
 		%>
 
 		<div class="row">
@@ -42,7 +42,7 @@
 						<th>Marca</th>
 						<th>Modelo</th>
 						<th>Año</th>
-						<th>Imagen</th>
+						<th>Matricula</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -53,9 +53,7 @@
 					<td><%=v.getMarca()%></td>
 					<td><%=v.getModelo()%></td>
 					<td><%=v.getAño()%></td>
-					<td><img alt="Portada"
-						src="image.jsp?imag=<%=v.getId()%>" class="img-thumbnail"
-						width="50" height="50"></td>
+					<td><%=v.getMatricula() %></td>
 					<td>
 						<button type="button" class="btn btn-default"
 							onclick="location.href='editarVehiculo.jsp?uuid=<%=v.getId()%>'">
@@ -81,13 +79,13 @@
 									</div>
 									<div class="modal-body">
 										¿Desea borrar el
-										<%=v.getModelo()%>?
+										<%=v.getMarca() %> <%=v.getModelo()%>?
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary"
 											data-dismiss="modal">No</button>
 										<button type="button" class="btn btn-primary"
-											onclick="location.href='../BorrarLibro?uuid=<%=v.getId()%>'">Sí</button>
+											onclick="location.href='../BorrarVehiculo?id=<%=v.getId()%>'">Sí</button>
 									</div>
 								</div>
 							</div>

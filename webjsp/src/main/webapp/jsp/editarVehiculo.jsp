@@ -23,7 +23,7 @@
 				response.sendRedirect("../index.jsp?mensaje=Inicie sesión");
 			} else {
 				VehiculoDAO vDAO = new VehiculoDAOImplHibernate();
-				Vehiculo v = vDAO.obtener(request.getParameter("matricula"));
+				Vehiculo v = vDAO.obtener(request.getParameter("id"));
 		%>
 
 		<div class="row">
@@ -45,7 +45,7 @@
 					<form action="../EditarVehiculo" method="post" role="form"
 						enctype="multipart/form-data">
 						<h3>Editar Vehiculo</h3>
-						<input type="hidden" name="uuid" id="uuid" value="<%=v.getId()%>">
+						<input type="hidden" name="id" id="id" value="<%=v.getId()%>">
 						<div class="form-group">
 							<label for="marca">Marca</label> <input type="text"
 								name="marca" id="marca" class="form-control"
