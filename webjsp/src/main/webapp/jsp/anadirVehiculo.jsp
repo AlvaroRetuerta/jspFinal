@@ -38,7 +38,7 @@
 		<div class="row">
 			<div class="col-md-5 col-md-offset-3">
 				<div class="form-area">
-					<form action="../AnadirVehiculo" enctype="multipart/form-data">
+					<form action="../AnadirVehiculo"> <!-- enctype="multipart/form-data" -->
 						<h3>Editar Vehiculo</h3>
 						<div class="form-group">
 							<label for="marca">Marca</label> <input type="text"
@@ -60,12 +60,12 @@
 							<label for="anyo">Año</label> <input type="number" name="anyo"
 								id="anyo" class="form-control">
 						</div>
-						<div class="form-group">
+						<!-- <div class="form-group">
 							<label for="imagen">Imagen</label> 
 							<input type="file"
 								class="form-control" id="imagen" name="imagen">
 						</div>
-						<div class="form-group">
+ -->						<div class="form-group">
 							<input type="submit" value="enviar" class="form-control btn btn-primary">
 						</div>
 					</form>
