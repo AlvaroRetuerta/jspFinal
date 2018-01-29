@@ -7,14 +7,15 @@
 <title>Registrar</title>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/css.css">
 
 <!-- Stylesheets -->
 <link rel="stylesheet" href="../fonts/font-awesome.min.css">
 </head>
 <body>
 	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
+		<div class="row main">
+			<div class="main-login main-center">
 				<h1>Registro</h1>
 				<%
 					String error = request.getParameter("mensaje");
@@ -30,51 +31,67 @@
 					}
 				%>
 				<hr>
-				<form action="../RegistrarUsuario" class="form-horizontal" method="post">
-					
+				<form action="../RegistrarUsuario" class="" method="post">
+
 					<div class="form-group">
-						<label class="col-md-6 control-label" for="nombre">Nombre</label>
-						<div class="col-md-6">
-							<input type="text" id="nombre" name="nombre" placeholder="Nombre"
-								class="form-control input-md" required>
+						<label class="col-sm-2 control-label" for="nombre">Nombre</label>
+						<div class="col-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+			
+								<input type="text" id="nombre" name="nombre"
+									placeholder="Nombre" class="form-control input-md" required>
+							</div>
 						</div>
 					</div>
-					
+
 					<div class="form-group">
-						<label class="col-md-6 control-label" for="apellidos">Apellidos</label>
-						<div class="col-md-6">
-							<input type="text" id="apellidos" name="apellidos" placeholder="Apellidos"
-								class="form-control input-md" required>
+						<label class="col-sm-2 control-label" for="apellidos">Apellidos</label>
+						<div class="col-sm-10">
+						<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+						
+							<input type="text" id="apellidos" name="apellidos"
+								placeholder="Apellidos" class="form-control input-md" required>
+								</div>
 						</div>
 					</div>
-					
+
 					<div class="form-group">
-						<label class="col-md-6 control-label" for="username">Username</label>
-						<div class="col-md-6">
-							<input type="text" id="username" name="username" placeholder="Username"
-								class="form-control input-md" required>
+						<label class="col-sm-2 control-label" for="username">Username</label>
+						<div class="col-sm-10">
+						<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+							<input type="text" id="username" name="username"
+								placeholder="Username" class="form-control input-md" required>
+								</div>
 						</div>
 					</div>
-					
+
 					<div class="form-group">
-						<label class="col-md-6 control-label" for="password">Password</label>
-						<div class="col-md-6">
-							<input type="text" id="password" name="password" placeholder="Password"
-								class="form-control input-md" required>
+						<label class="col-sm-2 control-label" for="password">Password</label>
+						<div class="col-sm-10">
+						<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+							<input type="text" id="password" name="password"
+								placeholder="Password" class="form-control input-md" required>
+								</div>
 						</div>
 					</div>
-					
+
 					<div class="form-group">
-						<label class="col-md-6 control-label" for="email">Email</label>
-						<div class="col-md-6">
+						<label class="col-sm-2 control-label" for="email">Email</label>
+						<div class="col-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
 							<input type="email" id="email" name="email" placeholder="Email"
 								class="form-control input-md" required>
+								</div>
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-md-6">
-							<input type="submit" value="Enviar"
-								class="btn btn-primary">
+						<div class="col-sm-10">
+							<input type="submit" value="Enviar" class="btn btn-primary btn-lg btn-block login-button">
 						</div>
 					</div>
 				</form>

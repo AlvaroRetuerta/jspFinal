@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Añadir Libro</title>
+<title>Añadir Vehiculo</title>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 
@@ -29,7 +29,7 @@
 				</a></li>
 				<li class="breadcrumb-item"><a href="principalUsu.jsp">Pincipal
 						Usuario</a></li>
-				<li class="breadcrumb-item">Añadir Libro</li>
+				<li class="breadcrumb-item">Añadir Vehiculo</li>
 				<li class="breadcrumb-item active"><a href="../CerrarSesion">Cerrar
 						Sesión</a></li>
 			</ol>
@@ -38,8 +38,7 @@
 		<div class="row">
 			<div class="col-md-5 col-md-offset-3">
 				<div class="form-area">
-					<form action="../AnadirVehiculo" method="post" role="form"
-						enctype="multipart/form-data">
+					<form action="../AnadirVehiculo" enctype="multipart/form-data">
 						<h3>Editar Vehiculo</h3>
 						<div class="form-group">
 							<label for="marca">Marca</label> <input type="text"
@@ -67,7 +66,7 @@
 								class="form-control" id="imagen" name="imagen">
 						</div>
 						<div class="form-group">
-							<input type="submit" class="form-control btn btn-primary">
+							<input type="submit" value="enviar" class="form-control btn btn-primary">
 						</div>
 					</form>
 				</div>
