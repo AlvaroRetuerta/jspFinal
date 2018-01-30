@@ -18,5 +18,7 @@ public interface VehiculoDAO {
 	public byte[] obtenerImagenPorId(int id);
 
 	public List<Vehiculo> listarTodos();
+
+	public void borrar(String matricula);
 	
 }

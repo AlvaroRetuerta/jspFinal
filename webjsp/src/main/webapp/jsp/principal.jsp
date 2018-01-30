@@ -10,10 +10,11 @@
 
 <!-- Stylesheets -->
 <link rel="stylesheet" href="../fonts/font-awesome.min.css">
+<link rel="stylesheet" href="../principalcss.css">
 </head>
 <body>
 	<div class="container">
-
+<div class="widget stacked widget-table action-table">
 		<%
 			if (session.getAttribute("usuLogeado") == null || session.isNew()) {
 				response.sendRedirect("../index.jsp?mensaje=Inicie sesión");
@@ -33,11 +34,10 @@
 			</ol>
 		</div>
 
-		<div class="row col-md-8 col-md-offset-2">
-			<table class="table table-striped">
+		<div class="row ">
+			<table class="table table-striped table-bordered col-12">
 				<thead>
-					<a href="anadirVehiculo.jsp" class="btn btn-primary btn-xs pull-right"><b>+</b>
-						Añadir Vehiculo</a>
+					
 					<tr>
 						<th>Marca</th>
 						<th>Modelo</th>
@@ -54,9 +54,9 @@
 					<td><%=v.getModelo()%></td>
 					<td><%=v.getAño()%></td>
 					<td><%=v.getMatricula() %></td>
-					<td>
+					<td class="td-actions">
 						<button type="button" class="btn btn-default"
-							onclick="location.href='editarVehiculo.jsp?uuid=<%=v.getId()%>'">
+							onclick="location.href='editarVehiculo.jsp?id=<%=v.getId()%>'">
 							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 							Actualizar
 						</button> <!-- Button trigger modal -->
@@ -103,8 +103,9 @@
 		<%
 			}
 		%>
-
-
+<a href="anadirVehiculo.jsp" class="btn btn-primary btn-xs pull-right"><b>+</b>
+						Añadir Vehiculo</a>
+</div>
 
 	</div>
 

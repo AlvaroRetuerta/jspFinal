@@ -7,7 +7,7 @@
 <title>Registrar</title>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="../css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/css.css">
+<link rel="stylesheet" href="../css/cssRegistro.css">
 
 <!-- Stylesheets -->
 <link rel="stylesheet" href="../fonts/font-awesome.min.css">

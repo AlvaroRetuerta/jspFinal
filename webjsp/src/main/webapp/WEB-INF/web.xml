@@ -11,6 +11,12 @@
   	<servlet-class>es.altair.controller.ValidarUsuario</servlet-class>
   </servlet>
   <servlet>
+  	<servlet-name>BorrarVehiculo</servlet-name>
+  	<display-name>BorrarVehiculo</display-name>
+  	<description></description>
+  	<servlet-class>es.altair.controller.BorrarVehiculo</servlet-class>
+  </servlet>
+  <servlet>
   	<servlet-name>RegistrarUsuario</servlet-name>
   	<display-name>RegistrarUsuario</display-name>
   	<description></description>
@@ -43,5 +49,9 @@
   <servlet-mapping>
   	<servlet-name>AnadirVehiculo</servlet-name>
   	<url-pattern>/AnadirVehiculo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>BorrarVehiculo</servlet-name>
+  	<url-pattern>/BorrarVehiculo</url-pattern>
   </servlet-mapping>
   </web-app>

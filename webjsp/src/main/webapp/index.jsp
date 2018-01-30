@@ -8,6 +8,7 @@
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/cssLogin.css">
 
 <!-- Stylesheets -->
 <link rel="stylesheet" href="fonts/font-awesome.min.css">
@@ -16,7 +17,7 @@
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
-				<h1>Login</h1>
+				
 				<%
 					String error = request.getParameter("mensaje");
 					if (error != null) {
@@ -31,26 +32,38 @@
 					}
 				%>
 				<hr>
-				<form role="form" method="POST" action="ValidarUsuario ">
-					<div class="form-group">
-						<label for="usuario">Usuario</label> <input type="text"
+				
+				
+				
+				<form method="POST" action="ValidarUsuario ">
+    		<h1><span>Login</span></h1>
+  			<div class="inset">
+	  			<p>
+	    		 <label for="usuario">Usuario</label>
+   	 			<input type="text"
 							class="form-control" id="usuario" name="usuario"
 							placeholder="Usuario" autofocus required="required">
-					</div>
-					<div class="form-group">
-					
-						<label for="password">Password</label> <input type="password"
+				</p>
+  				<p>
+				    <label for="password">Password</label> <input type="password"
 							class="form-control" id="password" name="password"
 							placeholder="Password" required="required">
-					</div>
-					<button type="submit" class="btn btn-primary">
-						<i class="fa fa-sign-in"></i> Enviar
-					</button>
-					<button type="button" class="btn btn-default"
+  				</p>
+				  
+ 			 </div>
+ 	 
+			  <p class="p-container">
+			    
+			    <input type="submit" value="Aceptar">
+			    
+			    <button type="button" class="btn-sm btn-primary "
 						onclick="location.href='jsp/registrar.jsp'">
 						<i class="fa fa-user-plus"></i> Registrar
 					</button>
-				</form>
+			  </p>
+		</form>
+				
+				
 			</div>
 		</div>
 	</div>

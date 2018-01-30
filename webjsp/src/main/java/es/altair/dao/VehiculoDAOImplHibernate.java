@@ -143,6 +143,25 @@ public class VehiculoDAOImplHibernate implements VehiculoDAO {
 		
 		return lista;
 	}
+
+	public void borrar(String matricula) {
+		
+		Session sesion = SessionProvider.getSession();
+		try {
+			sesion.beginTransaction();
+
+			sesion.createQuery("Delete FROM Vehiculo v where v.matricula=:m ").setParameter("m", matricula).list();
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+
+		} finally {
+			sesion.close();
+
+		}
+		
+		
+	}
 	
 	
 	
