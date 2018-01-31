@@ -29,12 +29,12 @@ public class BorrarVehiculo extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String matricula = request.getParameter("matricula");
+		int id = Integer.parseInt(request.getParameter("id"));
 		
 		VehiculoDAO vDAO = new VehiculoDAOImplHibernate();
-		vDAO.borrar(matricula);
+		vDAO.borrar(id);
 		
-		response.sendRedirect("jsp/principalUsu.jsp");
+		response.sendRedirect("jsp/principal.jsp");
 	}
 
 	/**

@@ -19,6 +19,6 @@ public interface VehiculoDAO {
 
 	public List<Vehiculo> listarTodos();
 
-	public void borrar(String matricula);
+	public void borrar(int id);
 	
 }
