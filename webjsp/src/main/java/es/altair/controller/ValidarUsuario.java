@@ -50,12 +50,12 @@ public class ValidarUsuario extends HttpServlet {
 			
 			switch (usu.getTipo()) {
 			case 0:
-				// Usuario Normal
+				// admin
 				response.sendRedirect("jsp/principal.jsp");
 				break;
 			case 1:
-				// Administrador
-				response.sendRedirect("jsp/principal.jsp");
+				// user
+				response.sendRedirect("jsp/principalUsuario.jsp");
 				break;
 
 			default:
