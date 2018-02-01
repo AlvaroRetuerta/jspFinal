@@ -48,19 +48,10 @@ public class ValidarUsuario extends HttpServlet {
 			HttpSession sesion = request.getSession();
 			sesion.setAttribute("usuLogeado", usu);
 			
-			switch (usu.getTipo()) {
-			case 0:
-				// admin
-				response.sendRedirect("jsp/principal.jsp");
-				break;
-			case 1:
-				// user
-				response.sendRedirect("jsp/principalUsuario.jsp");
-				break;
-
-			default:
-				break;
-			}
+			
+			response.sendRedirect("jsp/principal.jsp");
+			
+			
 			System.out.println(usu);
 		} else {
 			// Error Usuario

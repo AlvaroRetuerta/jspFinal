@@ -6,7 +6,7 @@ import es.altair.bean.Alquiler;
 
 public interface AlquilerDAO {
 
-	public void save(Alquiler a);
+	public int save(Alquiler a);
 	
 	public List<Alquiler> alquileresActuales();
 	

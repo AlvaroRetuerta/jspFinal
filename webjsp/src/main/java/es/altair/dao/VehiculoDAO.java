@@ -11,7 +11,6 @@ public interface VehiculoDAO {
 	
 	public void eliminar(Vehiculo v);
 	
-	public Vehiculo obtener(String matricula);
 	
 	public List<Vehiculo> listar(Usuario u);
 	
@@ -20,5 +19,9 @@ public interface VehiculoDAO {
 	public List<Vehiculo> listarTodos();
 
 	public void borrar(int id);
+
+	public Vehiculo obtener(int id);
+	
+	public List<Vehiculo> listarDisponibles();
 	
 }

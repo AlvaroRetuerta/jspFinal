@@ -15,15 +15,19 @@ import es.altair.util.SessionProvider;
 
 public class AlquilerDAOImplHibernate implements AlquilerDAO {
 
-	public void save(Alquiler a) {
-		
+	public int save(Alquiler a) {
+		int filas=0;
 		SessionFactory sf = new Configuration().configure().buildSessionFactory();
 		Session sesion = sf.openSession();
 		
 		try {
 			
 			sesion.beginTransaction();
-			sesion.save(a);
+			filas = sesion.createSQLQuery("INSERT INTO alquileres (idUser, idVehiculo, fechaInicio, fechaFin)"
+							+ "values (:u, :v, :fi,:ff)")
+				.setParameter("u", a.getUsuario().getIdUser()).setParameter("v", a.getVehiculo().getId()).setParameter("fi", a.getFechaInicio())
+				.setParameter("ff", a.getFechaFin()).executeUpdate();
+
 			sesion.getTransaction();
 			
 			
@@ -33,7 +37,7 @@ public class AlquilerDAOImplHibernate implements AlquilerDAO {
 			sesion.close();
 			sf.close();
 		}
-		
+		return filas;
 	}
 
 	public List<Alquiler> alquileresActuales() {
@@ -43,7 +47,7 @@ public class AlquilerDAOImplHibernate implements AlquilerDAO {
 		try {
 			sesion.beginTransaction();
 
-			lista = sesion.createQuery("FROM Alquiler a where current_date() between fechaInicio and fechaFin").list();
+			lista = sesion.createQuery("select idVehiculo FROM Alquiler a where current_date() between fechaInicio and fechaFin").list();
 
 			sesion.getTransaction().commit();
 		} catch (Exception e) {

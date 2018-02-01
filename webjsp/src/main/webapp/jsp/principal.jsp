@@ -1,4 +1,4 @@
-<%@page import="es.altair.bean.Vehiculo"%><%@page import="es.altair.dao.VehiculoDAOImplHibernate"%><%@page import="es.altair.dao.VehiculoDAO"%><%@page import="java.util.List"%><%@page import="es.altair.bean.Usuario"%><%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@page import="java.util.ArrayList"%><%@page import="es.altair.bean.Vehiculo"%><%@page import="es.altair.dao.VehiculoDAOImplHibernate"%><%@page import="es.altair.dao.VehiculoDAO"%><%@page import="java.util.List"%><%@page import="es.altair.bean.Usuario"%><%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -20,7 +20,11 @@
 				response.sendRedirect("../index.jsp?mensaje=Inicie sesión");
 			} else {
 				VehiculoDAO vDAO = new VehiculoDAOImplHibernate();
-				List<Vehiculo> vehiculos =vDAO.listarTodos();
+				List<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
+				if(((Usuario)session.getAttribute("usuLogeado")).getTipo() == 1){
+				vehiculos = vDAO.listarTodos();}
+				else{
+				vehiculos = vDAO.listarDisponibles();}
 		%>
 
 		<div class="row">
@@ -55,6 +59,7 @@
 					<td><%=v.getAño()%></td>
 					<td><%=v.getMatricula() %></td>
 					<td class="td-actions">
+					<% if(((Usuario)session.getAttribute("usuLogeado")).getTipo() == 1){ %>
 						<button type="button" class="btn btn-default"
 							onclick="location.href='editarVehiculo.jsp?id=<%=v.getId()%>'">
 							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
@@ -90,7 +95,14 @@
 								</div>
 							</div>
 						</div>
-
+						<%}
+					else{%>
+					<button type="button" class="btn btn-default"
+							onclick="location.href='../AlquilarVehiculo?id=<%=v.getId()%>'">
+							<i class="fas fa-check" aria-hidden="true"></i>
+							Alquilar
+						</button>
+					<%} %>
 					</td>
 				</tr>
 				<%

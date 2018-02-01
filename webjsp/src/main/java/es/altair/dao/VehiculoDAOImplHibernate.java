@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 
+import es.altair.bean.Alquiler;
 import es.altair.bean.Usuario;
 import es.altair.bean.Vehiculo;
 import es.altair.util.SessionProvider;
@@ -55,7 +56,7 @@ public class VehiculoDAOImplHibernate implements VehiculoDAO {
 		
 	}
 
-	public Vehiculo obtener(String matricula) {
+	public Vehiculo obtener(int id) {
 		Vehiculo v = null;
 		Session sesion = SessionProvider.getSession();
 		try {
@@ -63,8 +64,8 @@ public class VehiculoDAOImplHibernate implements VehiculoDAO {
 
 			v = (Vehiculo) sesion
 					.createQuery(
-							"SELECT v FROM Vehiculo v WHERE matricula=:m ")
-					.setParameter("m",matricula).uniqueResult();
+							"SELECT v FROM Vehiculo v WHERE id=:id ")
+					.setParameter("id",id).uniqueResult();
 
 			sesion.getTransaction().commit();
 		} catch (Exception e) {
@@ -162,6 +163,31 @@ public class VehiculoDAOImplHibernate implements VehiculoDAO {
 		
 		
 	}
+
+	public List<Vehiculo> listarDisponibles() {
+		List<Vehiculo> lista = new ArrayList<Vehiculo>();
+		
+		
+		
+		Session sesion = SessionProvider.getSession();
+		try {
+			sesion.beginTransaction();
+
+			lista = sesion.createSQLQuery("select * from vehiculos where vehiculos.idVehiculo not in"+ 
+					"(SELECT idVehiculo FROM alquileres where current_date() between fechaInicio and fechaFin)").list();
+
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+			// sf.close();
+		}
+				
+		return lista;
+	}
+
 	
 	
 	

@@ -1,7 +1,7 @@
 package es.altair.bean;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -11,8 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 @Entity
@@ -36,12 +34,12 @@ public class Alquiler implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Alquiler(Usuario usuario, Vehiculo vehiculo, Date fechaInicio, Date fechaFin) {
+	public Alquiler(Usuario usuario, Vehiculo vehiculo, Date currentDate, Date date) {
 		super();
 		this.usuario = usuario;
 		this.vehiculo = vehiculo;
-		this.fechaInicio = fechaInicio;
-		this.fechaFin = fechaFin;
+		this.fechaInicio = currentDate;
+		this.fechaFin = date;
 	}
 	public int getIdAlquiler() {
 		return idAlquiler;

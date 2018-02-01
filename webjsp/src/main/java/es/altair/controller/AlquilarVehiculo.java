@@ -4,14 +4,18 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
+import javax.print.attribute.standard.DateTimeAtCompleted;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import es.altair.bean.Alquiler;
+import es.altair.bean.Usuario;
 import es.altair.bean.Vehiculo;
 import es.altair.dao.AlquilerDAO;
 import es.altair.dao.AlquilerDAOImplHibernate;
@@ -45,9 +49,10 @@ public class AlquilarVehiculo extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		String matricula = request.getParameter("matricula");
+		int id= Integer.parseInt(request.getParameter("id"));
+		HttpSession sesion = request.getSession();
 		VehiculoDAO vDAO = new VehiculoDAOImplHibernate();
-		Vehiculo v = vDAO.obtener(matricula);
+		Vehiculo v = vDAO.obtener(id);
 		AlquilerDAO aDAO = new AlquilerDAOImplHibernate();
 		List<Alquiler> alquileres = aDAO.alquileresActuales();
 		
@@ -56,17 +61,17 @@ public class AlquilarVehiculo extends HttpServlet {
 		for (Alquiler a : alquileres) {
 			
 			if(a.getVehiculo().getId()==v.getId()) {
-				response.sendRedirect("jsp/principalUsuario?mensaje=El vehiculo ya esta alquilado");
+				response.sendRedirect("jsp/principal.jsp?mensaje=El vehiculo ya esta alquilado");
 			}
 			
 		}
 		Date currentDate = new Date();
-		Calendar c = Calendar.getInstance();
-        c.setTime(currentDate);
-        c.add(Calendar.DATE, 7);
+		Calendar c = new GregorianCalendar();
+		c.add(GregorianCalendar.DAY_OF_MONTH, 7);
         
-		//aDAO.save(new Alquiler(user, v , currentDate, c.getTime())); //terminar con la fecha y el usuario
-		response.sendRedirect("jsp/principalUsuario?mensaje=El alquiler expirará en una semana");
+		Alquiler a = new Alquiler(((Usuario)sesion.getAttribute("usuLogeado")), v, currentDate, c.getTime() );
+        aDAO.save(a);
+        response.sendRedirect("jsp/principal.jsp?mensaje=El alquiler expirará en una semana");
 		
 		
 	}

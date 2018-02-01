@@ -35,7 +35,7 @@
 				
 				
 				
-				<form method="POST" action="ValidarUsuario ">
+				<form method="POST" action="ValidarUsuario">
     		<h1><span>Login</span></h1>
   			<div class="inset">
 	  			<p>
