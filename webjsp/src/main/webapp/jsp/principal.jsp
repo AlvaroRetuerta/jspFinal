@@ -22,7 +22,8 @@
 				VehiculoDAO vDAO = new VehiculoDAOImplHibernate();
 				List<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
 				if(((Usuario)session.getAttribute("usuLogeado")).getTipo() == 1){
-				vehiculos = vDAO.listarTodos();}
+				vehiculos = vDAO.listarTodos();
+				}
 				else{
 				vehiculos = vDAO.listarDisponibles();}
 		%>

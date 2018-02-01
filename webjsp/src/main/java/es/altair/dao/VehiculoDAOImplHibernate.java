@@ -173,8 +173,8 @@ public class VehiculoDAOImplHibernate implements VehiculoDAO {
 		try {
 			sesion.beginTransaction();
 
-			lista = sesion.createSQLQuery("select * from vehiculos where vehiculos.idVehiculo not in"+ 
-					"(SELECT idVehiculo FROM alquileres where current_date() between fechaInicio and fechaFin)").list();
+			lista = sesion.createQuery("from Vehiculo where Vehiculo.idVehiculo not in"+ 
+					"(SELECT idVehiculo FROM Alquiler where current_date() between Alquiler.fechaInicio and Alquiler.fechaFin)").list();
 
 
 			sesion.getTransaction().commit();
