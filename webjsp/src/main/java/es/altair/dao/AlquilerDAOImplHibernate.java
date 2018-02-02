@@ -61,4 +61,25 @@ public class AlquilerDAOImplHibernate implements AlquilerDAO {
 		return lista;
 	}
 
+	public List<Alquiler> lista() {
+		List<Alquiler> lista = new ArrayList<Alquiler>();
+		
+		Session sesion = SessionProvider.getSession();
+		try {
+			sesion.beginTransaction();
+
+			lista = sesion.createQuery("FROM Alquiler a").list();
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			
+		} finally {
+			sesion.close();
+
+		}
+		
+		
+		return lista;
+	}
+
 }

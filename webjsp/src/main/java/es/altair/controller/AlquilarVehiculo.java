@@ -1,13 +1,11 @@
 package es.altair.controller;
 
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import javax.print.attribute.standard.DateTimeAtCompleted;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -49,7 +47,8 @@ public class AlquilarVehiculo extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		int id= Integer.parseInt(request.getParameter("id"));
+		//int id= Integer.parseInt(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("id"));
 		HttpSession sesion = request.getSession();
 		VehiculoDAO vDAO = new VehiculoDAOImplHibernate();
 		Vehiculo v = vDAO.obtener(id);

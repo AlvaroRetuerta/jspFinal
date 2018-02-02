@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import es.altair.bean.Vehiculo;
 import es.altair.dao.VehiculoDAO;
 import es.altair.dao.VehiculoDAOImplHibernate;
 
@@ -32,7 +33,8 @@ public class BorrarVehiculo extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		
 		VehiculoDAO vDAO = new VehiculoDAOImplHibernate();
-		vDAO.borrar(id);
+		Vehiculo v = vDAO.obtener(id);
+		vDAO.eliminar(v);
 		
 		response.sendRedirect("jsp/principal.jsp");
 	}

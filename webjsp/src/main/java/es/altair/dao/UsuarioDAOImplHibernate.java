@@ -1,11 +1,15 @@
 package es.altair.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 
 import es.altair.bean.Usuario;
 import es.altair.util.SessionProvider;
 
 public class UsuarioDAOImplHibernate implements UsuarioDAO {
+
 
 	private String pass = "Altair123$%";
 	
@@ -75,6 +79,102 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 		return usu;
 	}
 
+	public List<Usuario> listarTodos() {
+		List<Usuario> lista = new ArrayList<Usuario>();
+		Session sesion = SessionProvider.getSession();
+		try {
+			sesion.beginTransaction();
+
+			
+			lista = sesion.createQuery("FROM Usuario u").list();
+				
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+		}
+		return lista;
+	}
+
+	public void actualizar(Usuario u) {
+		
+		Session sesion = SessionProvider.getSession();
+		try {
+			sesion.beginTransaction();
+
+			
+			sesion.update(u);
+				
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+		}
+		
+	}
+
+	public Usuario obtener(int id) {
+		
+		Usuario u = null;
+		Session sesion = SessionProvider.getSession();
+		try {
+			sesion.beginTransaction();
+
+			u = (Usuario) sesion.createQuery("SELECT u FROM Usuario u WHERE id=:id ").setParameter("id", id)
+					.uniqueResult();
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+			// sf.close();
+		}
+
+		return u;
+
+	}
 	
+	
+public void borrar(int id) {
+		
+		Session sesion = SessionProvider.getSession();
+		try {
+			sesion.beginTransaction();
+
+			sesion.createSQLQuery("Delete from users where idUser=:id ").setParameter("id", id).executeUpdate();
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			
+		} finally {
+			sesion.close();
+
+		}
+	
+}
+
+public void actualizar(int id, String nombre, String apellidos, String email, String username) {
+	Session sesion = SessionProvider.getSession();
+	try {
+		sesion.beginTransaction();
+
+		sesion.createQuery("update Usuario set nombre=:n, apellidos=:a, email=:e, username=:u where id=:id")
+				.setParameter("id", id).setParameter("n", nombre).setParameter("a", apellidos)
+				.setParameter("e", email).setParameter("u", username).executeUpdate();
+
+		sesion.getTransaction().commit();
+	} catch (Exception e) {
+		// TODO: handle exception
+	} finally {
+		sesion.close();
+		// sf.close();
+	}
+	
+}
 	
 }

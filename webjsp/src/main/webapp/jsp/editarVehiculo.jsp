@@ -23,7 +23,9 @@
 				response.sendRedirect("../index.jsp?mensaje=Inicie sesión");
 			} else {
 				VehiculoDAO vDAO = new VehiculoDAOImplHibernate();
-				Vehiculo v = vDAO.obtener(request.getParameter("id"));
+				String id = request.getParameter("id");
+				int aux = Integer.parseInt(id);
+				Vehiculo v =vDAO.obtener(aux);
 		%>
 
 		<div class="row">
@@ -31,9 +33,9 @@
 				<li class="breadcrumb-item"><a href="../index.jsp">Bienvenido
 						<%=((Usuario) session.getAttribute("usuLogeado")).getNombre()%>
 				</a></li>
-				<li class="breadcrumb-item"><a href="principalUsu.jsp">Pincipal
+				<li class="breadcrumb-item"><a href="principal.jsp">Pincipal
 						Usuario</a></li>
-				<li class="breadcrumb-item">Editar Libro</li>
+				<li class="breadcrumb-item">Editar Vehiculo</li>
 				<li class="breadcrumb-item active"><a href="../CerrarSesion">Cerrar
 						Sesión</a></li>
 			</ol>
@@ -61,11 +63,11 @@
 						</div>
 						<div class="form-group">
 							<label for="pais">Pais</label> <input type="text" name="pais"
-								id="pais" class="form-control" value="<%=v.getModelo()%>">
+								id="pais" class="form-control" value="<%=v.getPais()%>">
 						</div>
 						<div class="form-group">
 							<label for="anyo">Año</label> <input type="number" name="anyo"
-								id="anyo" class="form-control" value="<%=v.getAño()%>">
+								id="anyo" class="form-control" value="<%=v.getAnyo()%>">
 						</div>
 						<div class="form-group">
 							<img alt="imagen" src="image.jsp?imag=<%=v.getId() %>" class="img-thumbnail"

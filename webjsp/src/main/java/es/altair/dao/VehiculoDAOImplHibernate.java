@@ -12,19 +12,14 @@ import es.altair.util.SessionProvider;
 
 public class VehiculoDAOImplHibernate implements VehiculoDAO {
 
-	public int insertar(Vehiculo v) {
-		int filas = 0;
+	public void insertar(Vehiculo v) {
+	
 
 		Session sesion = SessionProvider.getSession();
 		try {
 			sesion.beginTransaction();
 
-			filas = sesion
-					.createSQLQuery("INSERT INTO vehiculos (matricula, marca, modelo, año, pais)"
-							+ "values (:mat,:mar,:mod,:a,:p)")
-					.setParameter("mat", v.getMatricula()).setParameter("mar", v.getMarca())
-					.setParameter("mod", v.getModelo()).setParameter("a", v.getAño()).setParameter("p", v.getPais())
-					.executeUpdate();
+			sesion.save(v);
 
 			sesion.getTransaction().commit();
 		} catch (Exception e) {
@@ -33,8 +28,7 @@ public class VehiculoDAOImplHibernate implements VehiculoDAO {
 			sesion.close();
 		}
 
-		return filas;
-		
+	
 	}
 
 	public void eliminar(Vehiculo v) {
@@ -44,7 +38,7 @@ public class VehiculoDAOImplHibernate implements VehiculoDAO {
 			sesion.beginTransaction();
 
 			 sesion
-					.createSQLQuery("DELETE FROM vehiculos where id=:id").setParameter("id", v.getId())
+					.createSQLQuery("DELETE FROM vehiculos where idVehiculo=:id").setParameter("id", v.getId())
 					.executeUpdate();
 
 			sesion.getTransaction().commit();
@@ -56,27 +50,7 @@ public class VehiculoDAOImplHibernate implements VehiculoDAO {
 		
 	}
 
-	public Vehiculo obtener(int id) {
-		Vehiculo v = null;
-		Session sesion = SessionProvider.getSession();
-		try {
-			sesion.beginTransaction();
-
-			v = (Vehiculo) sesion
-					.createQuery(
-							"SELECT v FROM Vehiculo v WHERE id=:id ")
-					.setParameter("id",id).uniqueResult();
-
-			sesion.getTransaction().commit();
-		} catch (Exception e) {
-			// TODO: handle exception
-		} finally {
-			sesion.close();
-			// sf.close();
-		}
-
-		return v;
-	}
+	
 
 	public List<Vehiculo> listar(Usuario u) {
 		List<Vehiculo> lista = new ArrayList<Vehiculo>();
@@ -164,6 +138,30 @@ public class VehiculoDAOImplHibernate implements VehiculoDAO {
 		
 	}
 
+	
+	public void borrar(String id) {
+		  Session sesion = SessionProvider.getSession();
+		  try {
+		   sesion.beginTransaction();
+
+		   sesion.createQuery("DELETE FROM Vehiculo WHERE uuid=:clave")
+		   .setParameter("clave", id)
+		   .executeUpdate();
+		   
+		   sesion.getTransaction().commit();
+		  } catch (Exception e) {
+		   // TODO: handle exception
+		  } finally {
+		   sesion.close();
+		   // sf.close();
+		  }
+	
+	}
+	
+	
+	
+	
+	
 	public List<Vehiculo> listarDisponibles() {
 		List<Vehiculo> lista = new ArrayList<Vehiculo>();
 		
@@ -174,7 +172,7 @@ public class VehiculoDAOImplHibernate implements VehiculoDAO {
 			sesion.beginTransaction();
 
 			lista = sesion.createSQLQuery("select * from vehiculos where vehiculos.idVehiculo not in"+ 
-					"(SELECT idVehiculo FROM alquileres where current_date() between alquileres.fechaInicio and alquileres.fechaFin)").list();
+					"(SELECT idVehiculo FROM alquileres where current_date() between alquileres.fechaInicio and alquileres.fechaFin)").addEntity(Vehiculo.class).list();
 
 
 			sesion.getTransaction().commit();
@@ -188,8 +186,73 @@ public class VehiculoDAOImplHibernate implements VehiculoDAO {
 		return lista;
 	}
 
+	public Vehiculo obtener(String s) {
+		
+		Vehiculo v = new Vehiculo();
+		
+		
+		Session sesion = SessionProvider.getSession();
+		try {
+			int id = Integer.parseInt(s);
+			sesion.beginTransaction();
+
+			v = (Vehiculo) sesion.createSQLQuery("Select * from vehiculos where idVehiculo=:id").setParameter("id", id).uniqueResult();
+
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+			// sf.close();
+		}
+				
+		return v;
+	}
+
+	public Vehiculo obtener(int id) {
+		Vehiculo v = null;
+		Session sesion = SessionProvider.getSession();
+		try {
+			sesion.beginTransaction();
+
+			v = (Vehiculo) sesion
+					.createQuery(
+							"SELECT v FROM Vehiculo v WHERE id=:id ")
+					.setParameter("id",id).uniqueResult();
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+			// sf.close();
+		}
+
+		return v;
+	}
 	
-	
-	
+public void editar(int id, String marca, String modelo, String matricula, int anyo) {
+		
+		
+		
+		Session sesion = SessionProvider.getSession();
+		try {
+			sesion.beginTransaction();
+
+			sesion.createQuery("update Vehiculo set marca=:mar, modelo=:mod, matricula=:mat, anyo=:a where id=:id")
+					.setParameter("id", id).setParameter("mar", marca).setParameter("mod", modelo)
+					.setParameter("mat", matricula).setParameter("a", anyo).executeUpdate();
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+			// sf.close();
+		}
+
+	}
+
 
 }

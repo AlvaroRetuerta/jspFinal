@@ -7,10 +7,11 @@ import es.altair.bean.Vehiculo;
 
 public interface VehiculoDAO {
 	
-	public int insertar(Vehiculo v);
+	public void insertar(Vehiculo v);
 	
 	public void eliminar(Vehiculo v);
 	
+	public void borrar(String id);
 	
 	public List<Vehiculo> listar(Usuario u);
 	
@@ -24,4 +25,7 @@ public interface VehiculoDAO {
 	
 	public List<Vehiculo> listarDisponibles();
 	
+	public Vehiculo obtener(String id);
+
+	public void editar(int id, String marca, String modelo, String matricula, int anyo);
 }

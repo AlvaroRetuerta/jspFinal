@@ -10,4 +10,6 @@ public interface AlquilerDAO {
 	
 	public List<Alquiler> alquileresActuales();
 	
+	public List<Alquiler> lista();
+	
 }

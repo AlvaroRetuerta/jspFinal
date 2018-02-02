@@ -21,7 +21,7 @@ public class Alquiler implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idAlquiler;
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="idUsuario")
+	@JoinColumn(name="idUser")
 	private Usuario usuario;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idVehiculo")

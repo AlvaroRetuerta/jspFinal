@@ -112,6 +112,11 @@ public class Usuario implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public String toString() {
+		return nombre + ", " + apellidos;
+	}
+
 	
 	
 	

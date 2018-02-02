@@ -1,19 +1,11 @@
 package es.altair.controller;
 
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-
-import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
-
 import es.altair.bean.Vehiculo;
 import es.altair.dao.VehiculoDAO;
 import es.altair.dao.VehiculoDAOImplHibernate;
@@ -77,7 +69,7 @@ public class AnadirVehiculo extends HttpServlet {
 		vDAO.insertar(v);
 		
 		
-		response.sendRedirect("jsp/principalUsuario");
+		response.sendRedirect("jsp/principal.jsp");
 	}
 
 //	private String getFileName(Part filePart) {
